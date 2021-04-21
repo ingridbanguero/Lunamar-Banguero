@@ -6,33 +6,33 @@
 .navbar{
     width: 100%;
 }
-.navbar div{
+.navbar .container{
     display: flex;
     justify-content: space-between; 
     max-width: 1250px;
     margin: 0px auto;
 }
-.navbar div .main-logo{
+.navbar .container .main-logo{
     width: 150px;
     height: 70px;
 }
-.navbar div input {
+.navbar .container input {
     display: none; 
   }
   
-.navbar div .menu-icon {
+.navbar .container .menu-icon {
     padding: 35px 20px;
     position: relative;
     cursor: pointer;
 }
-.navbar div .menu-icon .nav-icon {
+.navbar .container .menu-icon .nav-icon {
     background: #325288;
     display: block;
     height: 2px;
     width: 24px;
     position: relative;
 }
-.navbar div .menu-icon .nav-icon:before {
+.navbar .container .menu-icon .nav-icon:before {
     background: #325288;
     content: "";
     display: block;
@@ -41,7 +41,7 @@
     width: 100%;
     top: 7px;
 }
-.navbar div .menu-icon .nav-icon:after {
+.navbar .container .menu-icon .nav-icon:after {
     background: #325288;
     content: "";
     display: block;
@@ -50,28 +50,33 @@
     width: 100%;
     top: -7px;
 }
-.navbar div input:checked ~  .menu-icon .nav-icon{
+.navbar .container input:checked ~  .menu-icon .nav-icon{
     background: transparent;
 }
-.navbar div input:checked ~  .menu-icon .nav-icon:before{
+.navbar .container input:checked ~  .menu-icon .nav-icon:before{
     transform: rotate(-45deg);
     top: 0;
 }
-.navbar div input:checked ~  .menu-icon .nav-icon:after{
+.navbar .container input:checked ~  .menu-icon .nav-icon:after{
     transform: rotate(45deg);
     top: 0;
 }
+.navbar .container .container-navigation{
+    display: flex;
+    align-items: center;
+}
 
 /*Barra de navegación*/
-.navbar div nav {
+.navbar .container nav {
     display: block;
     position: absolute;
     top: 70px;
     width: 100%;
-    margin-left: -100%;
+    display: none;
     z-index: 2; 
+    left: 0;
   }
-.navbar div nav ul {
+.navbar .container nav ul {
     margin: 0;
     flex-direction: column;
     list-style: none;
@@ -81,14 +86,14 @@
     font-family: monospace;
     font-size: 16px; 
 }
-.navbar div nav ul li a {
+.navbar .container nav ul li a {
     color: #325288;
     display: block;
     padding: 10px 20px;
     text-decoration: none; 
 }
-.navbar div input:checked ~ nav {
-    margin: 0; 
+.navbar .container input:checked ~ .container-navigation nav {
+    display: block;
 }
 
 /*Media queries*/
@@ -96,36 +101,35 @@
     .navbar{
         background-color: #f4eee8;;
     }
-    .navbar div{
+    .navbar .container{
       display: flex;
       justify-content: space-between;
       height: 80px; 
     }
-    .navbar div nav {
-      position: relative;
+    .navbar .container nav {
       top: 0; 
     }
-    .navbar div nav ul {
+    .navbar .container nav ul {
       display: flex;
       flex-direction: row;
       padding: 20px; 
     }
-    .navbar div nav ul li a {
+    .navbar .container nav ul li a {
       color: #325288;
       padding: 10px 20px; 
     }
-    .navbar div nav ul li a:hover {
+    .navbar .container nav ul li a:hover {
       font-weight: 700;
     }
-    .navbar div nav ul li a:active {
+    .navbar .container nav ul li a:active {
       color: hsla(218, 46%, 36%, 0.6);
       text-decoration: line-through;
     }
-    .navbar div label {
+    .navbar .container label {
       display: none;
       color: white; 
     }
-    .navbar div .main-logo {
+    .navbar .container .main-logo {
       z-index: 3;
       margin: 0px 5px;
       width: 200px;

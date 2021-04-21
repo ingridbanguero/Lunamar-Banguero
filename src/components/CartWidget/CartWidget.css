@@ -1,0 +1,19 @@
+.cartWidget{
+    margin: 0px 10px;
+    position: relative;
+}
+.cartWidget img{
+    width: 30px;
+}
+.cartWidget i{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #114e60;
+    color: #f4eee8;
+    font-size: 12px;
+    text-align: center;
+}

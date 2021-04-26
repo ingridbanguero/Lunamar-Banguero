@@ -1,12 +1,14 @@
 import './App.css';
 import { Navbar } from './components/Navbar/Navbar';
-import { ItemListContainer } from './components/ItemListContainer/ItemListContainer'
+import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
+import { ItemCount } from './components/ItemCount/ItemCount';
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
-      <ItemListContainer greeting="Este es un texto de ejemplo enviado por mi prop greeting"/>
+      <ItemListContainer greeting="Lista de productos"/>
+      <ItemCount stock={5} initial={0}/>
     </div>
   );
 }

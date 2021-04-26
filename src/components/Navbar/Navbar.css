@@ -108,6 +108,8 @@
     }
     .navbar .container nav {
       top: 0; 
+      display: block;
+      position: relative;
     }
     .navbar .container nav ul {
       display: flex;

@@ -24,7 +24,6 @@ export const Navbar = () => {
                     </nav>
                     <CartWidget/> 
                 </div>
-                
             </div>     
         </header>
     )

@@ -1,0 +1,9 @@
+.ItemList{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.ItemList .Item{
+    width: 33%;
+}

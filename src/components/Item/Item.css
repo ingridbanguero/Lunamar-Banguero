@@ -1,0 +1,18 @@
+.Item{
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+    margin-bottom: 25px;
+}
+
+.Item picture img{
+    width: 100%;
+}
+.Item p{
+    font-family: monospace;
+    font-size: 16px;
+    margin: 3px 0px;
+}

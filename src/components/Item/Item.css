@@ -6,6 +6,11 @@
     align-items: center;
     width: 33%;
     margin-bottom: 25px;
+    
+}
+.ItemContent{
+    text-decoration: none;
+    text-align: center;
 }
 
 .Item picture img{
@@ -15,4 +20,5 @@
     font-family: monospace;
     font-size: 16px;
     margin: 3px 0px;
+    color: #114e60;
 }

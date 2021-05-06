@@ -1,4 +1,5 @@
 import logo from '../../logo.svg';
+import { Link } from "react-router-dom";
 import { CartWidget } from '../CartWidget/CartWidget';
 import './Navbar.css'
 
@@ -11,15 +12,19 @@ export const Navbar = () => {
                 <label className="menu-icon" htmlFor="btn-menu">
                     <span className="nav-icon"></span>
                 </label>
-                <img src= {logo} className="main-logo" alt="logo" />
+                <Link to="/"><img src= {logo} className="main-logo" alt="logo" /></Link>
                 <div className="container-navigation">
                     <nav className='navigation'>
                         <ul className='links'>
-                            <li className='link'><a href="/">INICIO</a></li>
-                            <li className='link'><a href="/">CATEGORÍAS</a></li>
-                            <li className='link'><a href="/">PRODUCTOS</a></li>
-                            <li className='link'><a href="/">REGALOS</a></li>
-                            <li className='link'><a href="/">DESCUENTOS</a></li>
+                            <li className='link'>
+                                <Link to="/category/aromatizantes">AROMATIZANTES</Link>
+                            </li>
+                            <li className='link'>
+                                <Link to="/category/humectantes">HUMECTANTES</Link>
+                            </li>
+                            <li className='link'>
+                                <Link to="/category/artesanales">ARTESANALES</Link>
+                            </li>
                         </ul>
                     </nav>
                     <CartWidget/> 

@@ -38,7 +38,7 @@ export const ItemList = (props) => {
     }else{
         return(
             <div className="ItemList">
-                {products.map(product => <Item id={product.id} title={product.title} price={product.price} pictureUrl={product.pictureUrl}/>)}
+                {products.map(product => <Item id={product.id} title={product.title} price={product.price} pictureUrl={product.pictureUrl} stock={product.stock}/>)}
             </div>
         )
     }

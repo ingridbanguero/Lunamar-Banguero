@@ -2,6 +2,14 @@
     width: 90%;
     max-width: 200px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ItemCount .Count{
+    width: 100%;
+    display: flex;
     border: 1px solid rgba(17, 77, 96, 0.5);
     justify-content: space-between;
     align-items: center;
@@ -9,7 +17,7 @@
     margin: 10px;
 }
 
-.ItemCount button{
+.ItemCount .Count button{
     color: #114e60;
     height: 100%;
     font-size: 25px;
@@ -17,4 +25,19 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+.ItemCount .AddCart{
+    color: #114e60;
+    background-color: #f4eee8;
+    border: none;
+    width: 100%;
+    margin: 0px auto;
+    height: 32px;
+    cursor: pointer;
+}
+
+.ItemCount .AddCart:hover{
+    background-color: hsla(30, 33%, 93%, 0.6);
+    border: 1px sold #f4eee8;
 }

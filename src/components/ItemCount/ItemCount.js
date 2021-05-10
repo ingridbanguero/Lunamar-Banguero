@@ -12,12 +12,17 @@ export const ItemCount = (props) => {
     } 
     return(
         <div className="ItemCount">
-            <button onClick={onRemove}>
-                -
-            </button>
-            <p>{ count }</p>
-            <button onClick={onAdd}>
-                +
+            <div className="Count">
+                <button onClick={onRemove}>
+                    -
+                </button>
+                <p>{ count }</p>
+                <button onClick={onAdd}>
+                    +
+                </button>
+            </div>
+            <button className="AddCart">
+                AÑADIR AL CARRITO
             </button>
         </div>
 

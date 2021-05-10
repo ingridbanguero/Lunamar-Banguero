@@ -12,7 +12,7 @@ export const Item = (props) => {
                 <p>{props.title}</p>
                 <p>${props.price}</p>
             </Link>
-            <ItemCount stock={5} initial={0}/>
+            <ItemCount stock={props.stock} initial={0}/>
         </div>
     )
 }

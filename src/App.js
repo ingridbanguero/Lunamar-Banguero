@@ -2,6 +2,7 @@ import './App.css';
 import { Navbar } from './components/Navbar/Navbar';
 import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
+import { Cart } from './components/Cart/Cart';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -61,6 +62,9 @@ function App() {
           <div className="App">
         <Navbar/>
         <Switch>
+          <Route path="/cart">
+            <Cart/>
+          </Route>
           <Route path="/category/:id">
             <ItemListContainer products={products}/>
           </Route>

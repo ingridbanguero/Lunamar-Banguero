@@ -22,7 +22,7 @@ function App() {
         price: 19000,
         pictureUrl: 'https://i.imgur.com/oMLnbl8.jpg',
         category: 'aromatizantes',
-        stock: 2
+        stock: 3
     },
     {
         id: '3',
@@ -46,7 +46,7 @@ function App() {
         price: 25000,
         pictureUrl: 'https://i.imgur.com/qG9vYjh.jpg',
         category: 'artesanales',
-        stock: 2
+        stock: 6
     },
     {
         id: '6',

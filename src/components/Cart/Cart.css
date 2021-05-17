@@ -1,0 +1,71 @@
+.Cart{
+    max-width: 1250px;
+    margin: 0 auto;
+}
+.Cart .CartError{
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 80px);
+}
+.Cart .CartError h3{
+    color: #114e60;
+    text-align: center;
+    font-size: 30px;
+}
+.Cart .CartError p{
+    color: #325288;
+    text-align: center;
+    font-size: 15px;
+    padding: 15px;
+}
+.Cart .CartError button{
+    background-color: #f4eee8;
+    color: #325288;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    text-align: center;
+}
+.Cart table{
+    border: 1px solid #32528858;
+    vertical-align: middle;
+    margin: 1.5em 0 1.75em;
+    width: 100%;
+    border-width: 1px 1px 1px 1px;
+    border-collapse: collapse;
+}
+
+.Cart table th{
+    padding: 10px;
+}
+
+.Cart tbody tr td img{
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+.Cart tbody tr td p{
+    text-align: center;
+}
+.Cart tbody tr td button{
+    margin: 0 auto;
+    display: block;
+    background-color: #f4eee8;
+    color: #325288;
+    padding: 4px 6px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.Cart tbody tr .ClearCart button{
+    display: inline;
+    margin: 30px;
+    padding: 10px;
+    cursor: pointer;
+}

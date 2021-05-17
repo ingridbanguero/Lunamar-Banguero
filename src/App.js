@@ -1,4 +1,5 @@
 import './App.css';
+import { CartProvider } from './components/Context/cartContext'
 import { Navbar } from './components/Navbar/Navbar';
 import { ItemListContainer } from './components/ItemListContainer/ItemListContainer';
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
@@ -56,27 +57,29 @@ function App() {
         stock: 5
     },
   ]
-
+  
   return (
-    <BrowserRouter>
-          <div className="App">
-        <Navbar/>
-        <Switch>
-          <Route path="/cart">
-            <Cart/>
-          </Route>
-          <Route path="/category/:id">
-            <ItemListContainer products={products}/>
-          </Route>
-          <Route path="/item/:id">
-            <ItemDetailContainer item={products}/>
-          </Route>
-          <Route path="/">
-            <ItemListContainer products={products}/>
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+            <div className="App">
+          <Navbar/>
+          <Switch>
+            <Route path="/cart">
+              <Cart/>
+            </Route>
+            <Route path="/category/:id">
+              <ItemListContainer products={products}/>
+            </Route>
+            <Route path="/item/:id">
+              <ItemDetailContainer item={products}/>
+            </Route>
+            <Route path="/">
+              <ItemListContainer products={products}/>
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

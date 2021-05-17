@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams } from "react-router";
 import './ItemDetail.css';
 import loader from '../../assets/loader.gif';
 import { ItemCount } from '../ItemCount/ItemCount';
 import { Link } from "react-router-dom";
+import { CartContext } from '../Context/cartContext'
 
 export const ItemDetail = (props) => {
     const { id } = useParams();
@@ -11,12 +12,16 @@ export const ItemDetail = (props) => {
     const [item, setItem] = useState({})
     const [loading, setLoading] = useState(true);
     const [count, setCount] = useState(true);
+    const { addToCart, isInCart } = useContext(CartContext)
 
     const handleAdd = (count) => {
         if(count !== 0){
-            setCount(false)
+            const validateCart = isInCart(item.id);
+            if(validateCart){
+                setCount(false)
+                addToCart(item, count);
+            }
         }
-
     }
     const getItem = (item) => {
         return new Promise((response, reject) => {

@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from "react-router";
 import './ItemDetail.css';
 import loader from '../../assets/loader.gif';
 import { ItemCount } from '../ItemCount/ItemCount';
 import { Link } from "react-router-dom";
-import { CartContext } from '../Context/cartContext'
+import { CartContext } from '../Context/cartContext';
+import { getFirestore } from '../../firebase';
 
-export const ItemDetail = (props) => {
+export const ItemDetail = () => {
     const { id } = useParams();
-    const itemProducts =  props.item.item;
     const [item, setItem] = useState({})
     const [loading, setLoading] = useState(true);
     const [count, setCount] = useState(true);
@@ -23,19 +23,27 @@ export const ItemDetail = (props) => {
             }
         }
     }
-    const getItem = (item) => {
-        return new Promise((response, reject) => {
-            setTimeout(() => {
-                setItem(item)
-                setLoading(false);
-            }, 1000)
-        })
-    }
-    itemProducts.forEach((element) => {
-        if(element.id === id){
-            getItem(element);
-        }
-    })
+
+    // Traer productos
+    useEffect(
+        () => {
+            const db = getFirestore();
+            const itemCollection = db.collection("items")
+            itemCollection.get().then((querySnapshot) => {
+                    const data = querySnapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }));
+                    data.forEach((element) => {
+                        if(element.id === id){
+                            setItem(element)
+                        }
+                    })
+                    setLoading(false);
+                }).catch(
+                    (error) => console.error('Firestore error: ', error))
+    }, [id])
+
     if(loading){
         return(
             <div className="ItemDetail">

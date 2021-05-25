@@ -1,11 +1,68 @@
 import './Cart.css';
 import { Link } from "react-router-dom";
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { CartContext } from '../Context/cartContext';
+import { getFirestore } from '../../firebase';
 
 export const Cart = () => {
     const { cart, price, clearCart, removeFromCart} = useContext(CartContext);
+    const [buyer, setBuyer] = useState({
+        name: '',
+        phone: '',
+        mail: ''
+    })
+    const [order, setOrder] = useState('');
     
+    const handleInputChange = (event) => {
+        console.log(event.target.name)
+        console.log(event.target.value)
+        setBuyer({
+            ...buyer,
+            [event.target.name] : event.target.value
+        })
+    }
+
+    const sendOrder = (event) => {
+        event.preventDefault();
+        console.log(buyer);
+        const db = getFirestore();
+        const batch = db.batch();
+
+        const ordersCollection = db.collection("orders");
+
+        const items = cart.map(function(element){
+            return {
+                id: element.item.id,
+                title: element.item.title,
+                price: element.item.price
+            }
+        })
+
+        const newOrder = {
+            buyer: buyer,
+            items:  items,
+            total : price,
+            /* date: firebase.firestore.Timestamp.fromDate(new Date()) */
+        }
+        ordersCollection.add(newOrder).then(({id}) => {
+            setOrder(id);
+        })
+
+        cart.forEach((product) => {
+            const productRef = db.collection('items').doc(product.item.id);
+            console.log(productRef)
+            batch.update(productRef, {stock: product.item.stock - product.quantity})
+        })
+        batch.commit();
+
+        
+    };
+
+    useEffect(() => {
+        if(order !== ''){
+            alert(`Se ha creado exitosamente su orden. El ID es ${order}`);
+        }
+    }, [order])
 
     if(cart.length === 0){
         return(
@@ -41,6 +98,24 @@ export const Cart = () => {
                 </table>
                 <div>
                     <p>Total en carrito: ${price}</p>
+                </div>
+                <div className="Form">
+                    <p>Información de contacto</p>
+                    <form onSubmit={sendOrder}>
+                        <label>
+                            Name:
+                            <input type="text" name="name" onChange={handleInputChange}/>
+                        </label>
+                        <label>
+                            Teléfono:
+                            <input type="number" name="phone" onChange={handleInputChange}/>
+                        </label>
+                        <label>
+                            Correo:
+                            <input type="email" name="mail" onChange={handleInputChange}/>
+                        </label>
+                        <button type="submit">Enviar pedido</button>
+                    </form>
                 </div>
             </div>
         )

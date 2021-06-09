@@ -36,8 +36,8 @@
     height: 32px;
     cursor: pointer;
 }
-
 .ItemCount .AddCart:hover{
-    background-color: hsla(30, 33%, 93%, 0.6);
-    border: 1px sold #f4eee8;
+    color: #f4eee8;
+    background-color: #325288;
 }
+

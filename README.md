@@ -11,7 +11,7 @@ Para la construccion de la pagina web y de acuerdo a las recomendaciones se busc
 - [Categoria - Humectantes](http://localhost:3000/category/humectantes)
 - [Categoria - Artesanales](http://localhost:3000/category/artesanales)
 - [Item - Producto](http://localhost:3000/item/5)
-- [Item - Producto](http://localhost:3000/cart)
+- [Cart](http://localhost:3000/cart)
 
 
 ## Desarrollo

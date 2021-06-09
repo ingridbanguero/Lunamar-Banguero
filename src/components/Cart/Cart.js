@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from 'react';
 import { CartContext } from '../Context/cartContext';
 import { getFirestore } from '../../firebase';
+import firebase from 'firebase';
 
 export const Cart = () => {
     const { cart, price, clearCart, removeFromCart} = useContext(CartContext);
@@ -14,17 +15,13 @@ export const Cart = () => {
     const [order, setOrder] = useState('');
     
     const handleInputChange = (event) => {
-        console.log(event.target.name)
-        console.log(event.target.value)
         setBuyer({
             ...buyer,
             [event.target.name] : event.target.value
         })
     }
-
     const sendOrder = (event) => {
         event.preventDefault();
-        console.log(buyer);
         const db = getFirestore();
         const batch = db.batch();
 
@@ -42,40 +39,47 @@ export const Cart = () => {
             buyer: buyer,
             items:  items,
             total : price,
-            /* date: firebase.firestore.Timestamp.fromDate(new Date()) */
+            date: firebase.firestore.Timestamp.fromDate(new Date())
         }
         ordersCollection.add(newOrder).then(({id}) => {
             setOrder(id);
+            clearCart();
         })
 
         cart.forEach((product) => {
             const productRef = db.collection('items').doc(product.item.id);
-            console.log(productRef)
             batch.update(productRef, {stock: product.item.stock - product.quantity})
         })
         batch.commit();
-
-        
     };
 
-    useEffect(() => {
-        if(order !== ''){
-            alert(`Se ha creado exitosamente su orden. El ID es ${order}`);
-        }
-    }, [order])
-
     if(cart.length === 0){
-        return(
-            <div className="Cart">
-                <div className="CartError">
-                    <h3>No hay productos en el carrito</h3>
-                    <p>Antes de proceder al pago, debe agregar productos a su carrito de compras.<br></br> Lo invitamos a continuar navegando en nuestra página web</p>
-                    <Link to="/">
-                        <button>SEGUIR COMPRANDO</button>
-                    </Link>
+        if(order){
+            return(
+                <div className="Cart">
+                    <div className="CartError">
+                        <h3>Gracias por tu pedido</h3>
+                        <p>Se ha creado exitosamente su orden El ID es {order}<br></br> Lo invitamos a continuar navegando en nuestra página web</p>
+                        <Link to="/">
+                            <button>SEGUIR COMPRANDO</button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }else{
+            return(
+                <div className="Cart">
+                    <div className="CartError">
+                        <h3>No hay productos en el carrito</h3>
+                        <p>Antes de proceder al pago, debe agregar productos a su carrito de compras.<br></br> Lo invitamos a continuar navegando en nuestra página web</p>
+                        <Link to="/">
+                            <button>SEGUIR COMPRANDO</button>
+                        </Link>
+                    </div>
+                </div>
+            )
+        }
+        
     }else{
         return(
             <div className="Cart">
@@ -93,7 +97,7 @@ export const Cart = () => {
                     </thead>
                     <tbody>
                         {cart.map((product) => <tr><td><img src={product.item.pictureUrl} alt="" /></td><td><p>{product.item.title}</p></td><td><p>${product.item.price}</p></td><td><p>{product.quantity}</p></td><td><p>${product.quantity*product.item.price}</p></td><td><button onClick={() => removeFromCart(product.item.id)}>Eliminar</button></td></tr>)}
-                        <tr><td colSpan="6" class="ClearCart"><button onClick={clearCart}>Vaciar carrito</button></td></tr>
+                        <tr><td colSpan="6" className="ClearCart"><button onClick={clearCart}>Vaciar carrito</button></td></tr>
                     </tbody>
                 </table>
                 <div>

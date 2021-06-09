@@ -91,6 +91,7 @@
     display: block;
     padding: 10px 20px;
     text-decoration: none; 
+    background-color: #f4eee8;
 }
 .navbar .container input:checked ~ .container-navigation nav {
     display: block;
@@ -119,6 +120,7 @@
     .navbar .container nav ul li a {
       color: #325288;
       padding: 10px 20px; 
+      background-color: transparent;
     }
     .navbar .container nav ul li a:hover {
       font-weight: 700;
